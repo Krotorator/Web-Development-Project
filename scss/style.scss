@@ -265,60 +265,65 @@ body {
 		margin: 20px auto 30px;
 		&--width {
 			width: 100%;
+			transition: ‎all 0s ease 0s;
 		}
 	}
 	&__items {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		padding-bottom: 120px;
-		min-height: 100vh;
+		min-height: 105vh;
+		position: relative;
+
 	}
 	&__item{
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-		padding: 50px 45px 150px;
 		background: #fff;
 		flex-basis: calc(100% / 3 - 30px);
-		margin: 15px;
+		margin: 15px 0;
+		position: relative;
+		&-content {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: flex-start;
 		align-items: center;
 		text-align: center;
-		position: relative;
-		&:hover {
-			background-color: $green-color;
-			color: #fff;
+		padding:30px 20px 0;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
 		}
-		&:hover .services__smartphone {
-			background-image: url(../img/smartphone_white.png);
-		}
-
-	}
-	&__smartphone {
-		width: 56px;
-		height: 62px;
-		background-image: url(../img/smartphone.png);
 		
 	}
+
+	.fa-mobile-alt {
+		font-size: 60px;
+		transition: ‎all 0s ease 0s; 
+	}
+
 	&__item-title {
 		@include h3;
-		margin: 50px 0 0;
+		margin: 25px 0 0;
+		position: relative;
+		transition: ‎all 0s ease 0s; 
 	}
 	&__btn {
 		@include btn-black;
 		padding: 15px 20px;
 		@include btn-hover;
-		position: absolute;	
-		bottom: 13%;
-		&:hover {
-			.services__item {
+		@include pos-a;
+		top: 80%;
+		z-index: 2;
+		&:hover+.services__item-content, {
 				background-color: $green-color;
 				color: #fff;
-			}
+			}	
+		&:hover+.services__smartphone {
+			background-image: url(../img/smartphone_white.png);
 		}	
 	}
-
 }
 
 .portfolio {
@@ -373,11 +378,20 @@ body {
 			.portfolio__img {
 				filter: opacity(50%);
 			}
+			.portfolio__img-text{
+				z-index: 1;
+				}
+			}
 		}
-	}
 	&__img-text {
 		@include pos-a;
 		// z-index: 100;
+		&:hover {
+			.portfolio__img-title,
+			.portfolio__img-p {
+				transform: scale(1.1);
+			}
+		}
 		}
 	&__img-title {
 		@include h3;
@@ -398,15 +412,6 @@ body {
 	}
 
 }
-
-.portfolio__item:hover .portfolio__img-text{
-	z-index: 1;
-}
-
-.portfolio__img-text:hover .portfolio__img-title,
-.portfolio__img-text:hover .portfolio__img-p{
-			transform: scale(1.1);
-		}
 
 
 .pricing {
@@ -741,6 +746,12 @@ body {
 		line-height: 2.8rem;
 		letter-spacing: 1px;
 	}
+}
+
+.contact {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .form {
