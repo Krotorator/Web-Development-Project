@@ -17093,16 +17093,6 @@ window.onload = function() {
         ]
     })
 
-    // $('.portfolio__items').isotope({
-    //     // set itemSelector so .grid-sizer is not used in layout
-    //     itemSelector: '.portfolio__item',
-    //     percentPosition: true,
-    //     masonry: {
-    //         // use element for option
-    //         columnWidth: '.grid-sizer'
-    //     }
-    // })
-
     var $grid = $('.portfolio__items').isotope({
         itemSelector: '.portfolio__item',
         layoutMode: 'fitRows',
@@ -17123,27 +17113,46 @@ window.onload = function() {
         $grid.isotope({ filter: myFilter });
     });
 
-    $('.toggle-nav').on('click', function() {
-        $('.heading').toggleClass('active');
-        $('.toggle-nav').toggleClass('toggle-nav--active');
-        setTimeout(close, 4000);
+    var menuToggle = $('.toggle-nav');
+    var heading = $('.heading');
+    var scrollUp = $('.header__arrow--up');
+
+    // MENU
+    menuToggle.removeAttr("disabled");
+
+    menuToggle.on('click', function() {
+       heading.toggleClass('active');
+        menuToggle.toggleClass('toggle-nav--active');
+ 
     })
 
-    function close () {
-        $('.heading').removeClass('active');
-        $('.toggle-nav').removeClass('toggle-nav--active');
-    }
 
-    $('.header__arrow--up').removeClass('animate');
-
-    $('.header__arrow--up').on('click', function() {
-        $('.header__arrow--up').addClass('animate');
+    // SCROLL UP
+    scrollUp.removeClass('animate');
+    scrollUp.fadeOut();
+    scrollUp.on('click', function() {
+        scrollUp.addClass('animate');
        setTimeout(remove, 2000)
     })
 
     function remove () {
-        $('.header__arrow--up').removeClass('animate');
+        scrollUp.removeClass('animate');
     }
+
+    $(window).scroll(function () {
+        console.log($(window).scrollTop())
+
+        if ($(window).scrollTop() > 600) {
+            scrollUp.fadeIn();
+        } else {
+            scrollUp.fadeOut();
+        }
+
+        if ($(window).scrollTop() > 320) {
+           heading.removeClass('active');
+            menuToggle.removeClass('toggle-nav--active');
+        } 
+    })
 
 }
 console.log(555)
