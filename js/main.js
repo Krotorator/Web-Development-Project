@@ -17140,7 +17140,7 @@ window.onload = function() {
     }
 
     $(window).scroll(function () {
-        console.log($(window).scrollTop())
+        // console.log($(window).scrollTop())
 
         if ($(window).scrollTop() > 600) {
             scrollUp.fadeIn();
